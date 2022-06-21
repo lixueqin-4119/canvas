@@ -16,7 +16,7 @@
          let ctx=canvas.getContext("2d");
          ctx.fillStyle="black";
          ctx.strokeStyle='none'
-         ctx.lineWidth=20;
+         ctx.lineWidth=10;
           ctx.lineCap="round";
         
         function drawLine(x1,y1,x2,y2){
@@ -32,28 +32,31 @@
          document.documentElement;
  
          if(isTouchDevice){
-             canvas.ontouchstart = (e) => {
+         canvas.ontouchstart = (e) => {
          let x=e.touches[0].clientX
          let y=e.touches[0].clientY
          last=[x,y]
              }
+         
          canvas.ontouchmove = (e) => {
          let x=e.touches[0].clientX
          let y=e.touches[0].clientY
          drawLine(last[0],last[1],x,y)
          last=[x,y]
-     }
- }else{
- canvas.onmousedown = (e) =>{
-     painting=true
- last=[e.clientX,e.clientY]
- }
-      canvas.onmousemove = (e) => {
+              }
+          
+         }else{
+          canvas.onmousedown = (e) =>{
+          painting=true
+          last=[e.clientX,e.clientY]
+         }
+     
+          canvas.onmousemove = (e) => {
           if(painting ===true){
            drawLine(last[0],last[1],e.clientX,e.clientY)
            last=[e.clientX,e.clientY]
           }else{
-               console.log('啥也不做')
+            console.log('啥也不做')
           }    
       }
          canvas.onmouseup = () =>{
